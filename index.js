@@ -4,7 +4,7 @@ let allTrees = [];
 let categories = [];
 let cart = [];
 
-//  page loads
+//  page loads
 document.addEventListener("DOMContentLoaded", function () {
     initializeWebsite();
     setupModal();
@@ -46,7 +46,7 @@ async function initializeWebsite() {
     }
 }
 
-//  "All Trees" selected by default
+//  "All Trees" selected by default
 function displayCategories() {
     const categoriesList = document.getElementById("categories-list");
     categoriesList.innerHTML = "";
@@ -236,14 +236,14 @@ function updateCartDisplay() {
     }
 
     cartItems.innerHTML = cart.map(item => `
-      <div class="flex justify-between items-center bg-[#F0FDF4] p-3 rounded-lg">
-        <div>
-          <div class="font-semibold text-green-800">${item.name}</div>
-          <div class="text-sm text-gray-600">Qty: ${item.quantity} × ৳${item.price}</div>
+        <div class="flex justify-between items-center bg-[#F0FDF4] p-3 rounded-lg">
+          <div>
+            <div class="font-semibold text-green-800">${item.name}</div>
+            <div class="text-sm text-gray-600">Qty: ${item.quantity} × ৳${item.price}</div>
+          </div>
+          <button onclick="removeFromCart(${item.id})" class=" hover:text-red-700"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <button onclick="removeFromCart(${item.id})" class=" hover:text-red-700"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-    `).join('');
+      `).join('');
 
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     cartTotal.textContent = `৳${total}`;
@@ -282,10 +282,10 @@ function hideElement(id) {
 
 function showError(containerId, message) {
     document.getElementById(containerId).innerHTML = `
-      <div class="col-span-full text-center py-20 text-red-500">
-        <div class="text-4xl mb-4">⚠</div>
-        <p class="text-lg">${message}</p>
-      </div>
-    `;
+        <div class="col-span-full text-center py-20 text-red-500">
+          <div class="text-4xl mb-4">⚠</div>
+          <p class="text-lg">${message}</p>
+        </div>
+      `;
     showElement(containerId);
 }
